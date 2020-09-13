@@ -13,8 +13,8 @@
     @endisset
 
     @if (auth()->check())
-      <h4>10 моих паст</h4>
       @isset($userListPaste)
+      <h4>10 моих паст</h4>
         @foreach($userListPaste as $el)
           <div class="">
             <a href="{{ route('paste-one', $el->url) }}">{{ $el->name }}</a>
