@@ -16,48 +16,18 @@ Route::get(
   'PasteController@create'
 )->name('home');
 
-Route::post(
-  '/new',
-  'PasteController@store'
-)->name('paste-new');
-
-Route::get(
-  '/{cacheString}',
-  'PasteController@showPasteOne'
-)->name('paste-one');
-
-// Route::get(
-//   'user/paste/{cacheString}',
-//   'PasteController@showUserPaste'
-// )->name('user-paste-one');
-
-Route::get(
-  '/update/{cacheString}',
-  'PasteController@updatePasteView',
-)->name('paste-update');
-
-Route::post(
-  '/update/{cacheString}',
-  'PasteController@updatePaste',
-)->name('paste-update-submit');
-
-Route::get(
-  '/delete/{cacheString}',
-  'PasteController@deletePaste',
-)->name('paste-delete');
-
 Route::get(
   '/u/{UserLogin}',
   'PasteController@getUserPaste',
 )->name('user-pastes');
 
 Route::get(
-  '/register',
+  '/p/register',
   'RegisterController@create'
 )->name('register');
 
 Route::post(
-  '/register',
+  '/p/register',
   'RegisterController@store'
 )->name('user-register');
 
@@ -86,3 +56,38 @@ Route::get(
   '/social-auth/{provider}/callback',
   'SocialController@handleProviderCallback'
 )->name('auth.social.callback');
+
+Route::post(
+  '/p/new',
+  'PasteController@store'
+)->name('paste-new');
+
+Route::get(
+  '/p/{cacheString}',
+  'PasteController@showPasteOne'
+)->name('paste-one');
+
+// Route::get(
+//   'user/paste/{cacheString}',
+//   'PasteController@showUserPaste'
+// )->name('user-paste-one');
+
+Route::get(
+  '/p/update/{cacheString}',
+  'PasteController@updatePasteView',
+)->name('paste-update');
+
+Route::post(
+  '/p/update/{cacheString}',
+  'PasteController@updatePaste',
+)->name('paste-update-submit');
+
+Route::get(
+  '/p/delete/{cacheString}',
+  'PasteController@deletePaste',
+)->name('paste-delete');
+
+Route::get(
+  '/u/{UserLogin}',
+  'PasteController@getUserPaste',
+)->name('user-pastes');
