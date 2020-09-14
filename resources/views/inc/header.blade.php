@@ -12,9 +12,17 @@
     <nav class="nav blog-nav">
       <a class="nav-link active" href="{{ route('home') }}">Главная страница</a>
       @if (auth()->check())
-        <a class="nav-link ml-auto" href="{{ route('logout')}}">{{auth()->user()->name}}</a>
+        <div class="dropdown open ml-auto">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{auth()->user()->name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{{ route('user-pastes',auth()->user()->name)}}">Мои пасты</a>
+            <a class="dropdown-item" href="{{ route('logout')}}">Выйти</a>
+          </div>
+        </div>
       @else
-        <a class="nav-link ml-auto" href="{{ route('login')}}">Войти</a>
+        <a class="btn btn-outline-primary  ml-auto" href="{{ route('login') }}">Войти</a>
       @endif
     </nav>
   </div>
