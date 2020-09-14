@@ -6,11 +6,6 @@
 @section('content')
   @if (isset($pasteData))
     <h1>{{ $pasteData->name }}</h1>
-    @if($pasteData->id_user != 0)
-      <p><small><a href="{{ route('user-pastes',$pasteData->user_name) }}">{{ $pasteData->user_name }}</a></small></p>
-    @else
-        <p><small>Guest</small></p>
-    @endif
     @if ((auth()->check()) && (auth()->user()->id == $pasteData->id_user))
       <a href="{{ route('paste-update', $pasteData->url) }}"><button class="btn btn-warning">Редактировать</button></a>
       <a href="{{ route('paste-delete', $pasteData->url) }}"><button class="btn btn-danger">Удалить</button></a>
