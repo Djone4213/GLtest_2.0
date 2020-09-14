@@ -10,13 +10,11 @@ use App\Models\User;
 
 class SocialController extends Controller
 {
-    public function redirectToProvider($provider)
-    {
+    public function redirectToProvider($provider) {
       return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback($provider)
-    {
+    public function handleProviderCallback($provider) {
       $socialiteUser = Socialite::driver($provider)->user();
 
       $user = $this->findOrCreateUser($provider, $socialiteUser);
@@ -26,15 +24,12 @@ class SocialController extends Controller
       return redirect()->home();
     }
 
-    public function findOrCreateUser($provider, $socialiteUser)
-    {
-      if ($user = $this->findUserBySocialId($provider, $socialiteUser->getId()))
-      {
+    public function findOrCreateUser($provider, $socialiteUser) {
+      if ($user = $this->findUserBySocialId($provider, $socialiteUser->getId())) {
         return $user;
       }
 
-      if ($user = $this->findUserByEmail($provider, $socialiteUser->getEmail()))
-      {
+      if ($user = $this->findUserByEmail($provider, $socialiteUser->getEmail())) {
           $this->addSocialAccount($provider, $user, $socialiteUser);
 
           return $user;
@@ -51,8 +46,7 @@ class SocialController extends Controller
       return $user;
     }
 
-    public function findUserBySocialId($provider, $id)
-    {
+    public function findUserBySocialId($provider, $id) {
       $socialAccount = SocialAccount::where('provider', $provider)->
         where('provider_id', $id)->
         first();
@@ -60,13 +54,11 @@ class SocialController extends Controller
         return $socialAccount ? $socialAccount->user : false;
     }
 
-    public function findUserByEmail($provider, $email)
-    {
+    public function findUserByEmail($provider, $email) {
       return !$email ? nul : User::where('email', $email)->first();
     }
 
-    public function addSocialAccount($provider, $user, $socialiteUser)
-    {
+    public function addSocialAccount($provider, $user, $socialiteUser) {
       SocialAccount::create([
           'id_user' => $user->id,
           'provider' => $provider,

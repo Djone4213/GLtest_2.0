@@ -4,7 +4,7 @@
 
 @section('content')
   @if (isset($pasteData))
-    <form action="{{ route('paste-update', $pasteData->id) }}" method="post">
+    <form action="{{ route('paste-update', $pasteData->url) }}" method="post">
     @csrf
     <div class="form-group">
       <label for="paste">Паста</label>

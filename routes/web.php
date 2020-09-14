@@ -17,29 +17,39 @@ Route::get(
 )->name('home');
 
 Route::post(
-  '/paste/new',
+  '/new',
   'PasteController@store'
 )->name('paste-new');
 
 Route::get(
-  '/paste/{cacheString}',
+  '/{cacheString}',
   'PasteController@showPasteOne'
 )->name('paste-one');
 
+// Route::get(
+//   'user/paste/{cacheString}',
+//   'PasteController@showUserPaste'
+// )->name('user-paste-one');
+
 Route::get(
-  '/paste/update/{id}',
+  '/update/{cacheString}',
   'PasteController@updatePasteView',
 )->name('paste-update');
 
 Route::post(
-  '/paste/update/{id}',
+  '/update/{cacheString}',
   'PasteController@updatePaste',
 )->name('paste-update-submit');
 
 Route::get(
-  '/paste/delete/{id}',
+  '/delete/{cacheString}',
   'PasteController@deletePaste',
 )->name('paste-delete');
+
+Route::get(
+  '/u/{UserLogin}',
+  'PasteController@getUserPaste',
+)->name('user-pastes');
 
 Route::get(
   '/register',
